@@ -1,0 +1,26 @@
+{
+  "name": "healthy-pets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server --ignore client",
+    "develop": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleji0/project-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleji0/project-3/issues"
+  },
+  "homepage": "https://github.com/aleji0/project-3#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
