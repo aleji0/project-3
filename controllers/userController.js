@@ -11,6 +11,9 @@ const userController = {
     // get all users
     getUsers(req, res) {
         Users.find({})
+        .populate({path: 'pets', select: '-__V'})
+        // more will go here when we know what data is to be retrieved and rendered
 
-    }
+    },
+
 }
