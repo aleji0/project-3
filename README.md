@@ -1,3 +1,13 @@
+## Getting started
+- Pull current repo
+- create .env with proper values from .env.example file in ./server (values in Slack)
+- npm i from root level
+- npm run seed
+- npm run develop
+- Open graphql and login
+- Copy token to environment variable
+
+
 # project-3
 - reset auth in server (see diff)
 - add utils back in
