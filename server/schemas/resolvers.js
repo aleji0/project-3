@@ -13,6 +13,15 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    users: async (parent, args, context) => {
+      if (context.user) {
+        const users = await User.find({});
+
+        return users;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {

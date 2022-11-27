@@ -6,6 +6,7 @@
 - add auth error back to resolver
 - add login resolver and typedef
 - Update seed script
+- Authentication in the [Apollo Sandbox](https://www.apollographql.com/docs/graphos/explorer/connecting-authenticating/)
 
 ### Resources
 - Synching up with a [remote branch](https://www.ocpsoft.org/tutorials/git/reset-and-sync-local-respository-with-remote-branch/)
