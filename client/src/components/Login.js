@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,10 @@ import { AiFillLock } from 'react-icons/ai';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
 
 function Copyright(props) {
   return (
@@ -28,13 +32,35 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login() {
-  const handleSubmit = (event) => {
+export default function Login(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
     });
   };
 
@@ -66,6 +92,12 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+
+              className="form-input"
+              placeholder="Your email"
+              type="email"
+              value={formState.email}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -76,6 +108,11 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+
+              className="form-input"
+              placeholder="******"
+              value={formState.password}
+              onChange={handleChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
