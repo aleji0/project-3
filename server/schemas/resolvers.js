@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { Pet, User } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -43,7 +43,7 @@ const resolvers = {
     addPet: async (parent, args) => {
       const pet = await Pet.create(args);
 
-      return { pet };
+      return pet;
     },
     updatePet: async (parent, args, context) => {
       if (context.pet) {
