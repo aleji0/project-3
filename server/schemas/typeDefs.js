@@ -6,6 +6,12 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+  }  
+  
+  type Pet {
+    _id: ID
+    petName: String
+    petType: String
   }
 
   type Auth {

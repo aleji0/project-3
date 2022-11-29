@@ -39,6 +39,22 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    
+    addPet: async (parent, args) => {
+      const pet = await Pet.create(args);
+
+      return { pet };
+    },
+    updatePet: async (parent, args, context) => {
+      if (context.pet) {
+        return await Pet.findByIdAndUpdate(context.pet._id, args, {
+          new: true,
+        });
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
