@@ -30,7 +30,7 @@ const Account = () => {
       const { data } = await addPet({
         variables: { ...formState },
       });
-      console.log("data", data);
+      console.log(data);
     } catch (e) {
       console.error(e);
     }
@@ -53,7 +53,7 @@ const Account = () => {
           }}
         >
           <Typography component="h1" variant="h5">
-            Pet Name
+            Welcome! Tell us about your pets!
           </Typography>
           <Box
             component="form"
@@ -74,6 +74,21 @@ const Account = () => {
               placeholder="Your pet's name"
               type="text"
               value={formState.petName}
+              onChange={handleChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="petType"
+              label="What kind of pet do you have?"
+              name="petType"
+              autoComplete="petType"
+              autoFocus
+              className="form-input"
+              placeholder="What kind of pet do you have?"
+              type="text"
+              value={formState.petType}
               onChange={handleChange}
             />
             <Button
