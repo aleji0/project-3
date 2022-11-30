@@ -22,6 +22,15 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    getParks: async (parent, args, context) => {
+      if (context.user) {
+        const users = await User.find({});
+
+        return users;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -40,11 +49,22 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
     
-    addPet: async (parent, args) => {
-      const pet = await Pet.create(args);
-
-      return pet;
+    addPet: async (parent, args, context) => {
+     // const pet = await Pet.create(args);
+      console.log("user", context.user)
+      Pet.create(args)
+      .then((pet) => {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { pets: pet._id } },
+          { new: true }
+        );
+      })
+      .catch(err => {
+        return false
+      })
     },
+
     updatePet: async (parent, args, context) => {
       if (context.pet) {
         return await Pet.findByIdAndUpdate(context.pet._id, args, {
