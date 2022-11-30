@@ -39,10 +39,10 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    
+
     addPet: async (parent, args) => {
       const pet = await Pet.create(args);
-
+      console.log(context.user);
       return pet;
     },
     updatePet: async (parent, args, context) => {
