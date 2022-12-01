@@ -14,7 +14,7 @@ const Account = () => {
   const theme = createTheme();
   const [formState, setFormState] = useState({
     petName: "",
-    petType: "generic",
+    petType: "",
   });
   const [addPet, { error, data }] = useMutation(ADD_PET);
   const [getUser, { error, data }] = useMutation(ADD_PET);
@@ -42,6 +42,13 @@ const Account = () => {
       petType: "",
     });
   };
+  const [selected, setSelected] = useState("dog");
+
+  const handleRadio = (event) => {
+    console.log(event.target.value);
+    setSelected(event.target.value);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -78,19 +85,59 @@ const Account = () => {
               value={formState.petName}
               onChange={handleChange}
             />
+            <FormControl>
+              <FormLabel id="demo-radio-buttons-group-label">
+                Pet Type
+              </FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="dog"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="dog"
+                  control={<Radio />}
+                  label="Dog"
+                  checked={selected === "dog"}
+                  onChange={handleRadio}
+                />
+                <FormControlLabel
+                  value="cat"
+                  control={<Radio />}
+                  label="Cat"
+                  checked={selected === "cat"}
+                  onChange={handleRadio}
+                />
+              </RadioGroup>
+            </FormControl>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="petType"
-              label="What kind of pet do you have?"
-              name="petType"
-              autoComplete="petType"
+              id="petWeight"
+              label="What is your pet's weight?"
+              name="petWeight"
+              autoComplete="petWeight"
               autoFocus
               className="form-input"
-              placeholder="What kind of pet do you have?"
+              placeholder="Your pet's weight"
               type="text"
-              value={formState.petType}
+              value={formState.petWeight}
+              onChange={handleChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="petAge"
+              label="What is your pet's age?"
+              name="petAge"
+              autoComplete="petAge"
+              autoFocus
+              className="form-input"
+              placeholder="Your pet's age"
+              type="text"
+              value={formState.petName}
               onChange={handleChange}
             />
             <Button

@@ -63,6 +63,7 @@ const resolvers = {
       .catch(err => {
         return false
       })
+
     },
 
     updatePet: async (parent, args, context) => {
