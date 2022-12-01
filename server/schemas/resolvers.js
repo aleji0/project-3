@@ -22,7 +22,7 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    getParks: async (parent, args, context) => {
+    getPets: async (parent, args, context) => {
       if (context.user) {
         const users = await User.find({});
 

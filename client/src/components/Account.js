@@ -6,8 +6,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PET } from "../utils/mutations";
+import { ADD_PET } from "../utils/queries";
 // import Auth from '../utils/auth';
 const Account = () => {
   const theme = createTheme();
@@ -16,6 +17,7 @@ const Account = () => {
     petType: "generic",
   });
   const [addPet, { error, data }] = useMutation(ADD_PET);
+  const [getUser, { error, data }] = useMutation(ADD_PET);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
