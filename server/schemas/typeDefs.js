@@ -12,6 +12,8 @@ const typeDefs = gql`
     _id: ID
     petName: String
     petType: String
+    petWeight: Int
+    petAge: Int
   }
 
   type Auth {
@@ -31,10 +33,14 @@ const typeDefs = gql`
     addPet(
       petName: String!
       petType: String!
+      petWeight: Int!
+      petAge: Int!
     ) : Pet
     updatePet(
       petName: String
       petType: String
+      petWeight: Int
+      petAge: Int
     ) : Pet
     addUser(
       firstName: String!

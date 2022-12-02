@@ -39,12 +39,13 @@ const Account = () => {
     console.log(event.target.value);
     setSelected(event.target.value);
   };
-  // const handleWeight = (event) => {
-  //   const { weight, value } = event.target;
-  //   setFormState({
-  //     ...formState,
-  //     [weight]: value,
-  //   });
+  const handleInteger = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: parseInt(value),
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -140,7 +141,7 @@ const Account = () => {
               placeholder="Your pet's weight in lbs?"
               type="number"
               value={formState.petWeight}
-              onChange={handleChange}
+              onChange={handleInteger}
             />
             <TextField
               margin="normal"
@@ -155,7 +156,7 @@ const Account = () => {
               placeholder="Your pet's age"
               type="number"
               value={formState.petAge}
-              onChange={handleChange}
+              onChange={handleInteger}
             />
             <Button
               type="submit"
