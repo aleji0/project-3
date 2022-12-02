@@ -20,6 +20,8 @@ const Account = () => {
   const [formState, setFormState] = useState({
     petName: "",
     petType: "",
+    petWeight: "",
+    petAge: "",
   });
   const [addPet, { error, data }] = useMutation(ADD_PET);
   const handleChange = (event) => {
@@ -27,8 +29,23 @@ const Account = () => {
     setFormState({
       ...formState,
       [name]: value,
+      // [weight]: value,
+      // [age]: age,
     });
   };
+
+  const [selected, setSelected] = useState("dog");
+  const handleRadio = (event) => {
+    console.log(event.target.value);
+    setSelected(event.target.value);
+  };
+  // const handleWeight = (event) => {
+  //   const { weight, value } = event.target;
+  //   setFormState({
+  //     ...formState,
+  //     [weight]: value,
+  //   });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
@@ -44,13 +61,9 @@ const Account = () => {
     setFormState({
       petName: "",
       petType: "",
+      petWeight: "",
+      petAge: "",
     });
-  };
-  const [selected, setSelected] = useState("dog");
-
-  const handleRadio = (event) => {
-    console.log(event.target.value);
-    setSelected(event.target.value);
   };
 
   return (
@@ -119,13 +132,13 @@ const Account = () => {
               required
               fullWidth
               id="petWeight"
-              label="What is your pet's weight?"
+              label="What is your pet's weight in lbs?"
               name="petWeight"
               autoComplete="petWeight"
               autoFocus
               className="form-input"
-              placeholder="Your pet's weight"
-              type="text"
+              placeholder="Your pet's weight in lbs?"
+              type="number"
               value={formState.petWeight}
               onChange={handleChange}
             />
@@ -140,8 +153,8 @@ const Account = () => {
               autoFocus
               className="form-input"
               placeholder="Your pet's age"
-              type="text"
-              value={formState.petName}
+              type="number"
+              value={formState.petAge}
               onChange={handleChange}
             />
             <Button
