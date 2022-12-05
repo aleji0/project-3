@@ -13,6 +13,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 
 // import Auth from '../utils/auth';
 const Account = () => {
@@ -65,6 +68,14 @@ const Account = () => {
       petAge: "",
     });
   };
+  const bull = (
+    <Box
+      component="span"
+      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+    >
+      •
+    </Box>
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -165,6 +176,41 @@ const Account = () => {
             >
               Submit
             </Button>
+          </Box>
+        </Box>
+        <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+          <Box sx={{ my: 3, mx: 2 }}>
+            <Grid container alignItems="center">
+              <Grid item xs>
+                <Typography gutterBottom variant="h4" component="div">
+                  Toothbrush
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography gutterBottom variant="h6" component="div">
+                  $4.50
+                </Typography>
+              </Grid>
+            </Grid>
+            <Typography color="text.secondary" variant="body2">
+              Pinstriped cornflower blue cotton blouse takes you on a walk to the park or
+              just down the hall.
+            </Typography>
+          </Box>
+          <Divider variant="middle" />
+          <Box sx={{ m: 2 }}>
+            <Typography gutterBottom variant="body1">
+              Select type
+            </Typography>
+            <Stack direction="row" spacing={1}>
+              <Chip label="Extra Soft" />
+              <Chip color="primary" label="Soft" />
+              <Chip label="Medium" />
+              <Chip label="Hard" />
+            </Stack>
+          </Box>
+          <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
+            <Button>Add to cart</Button>
           </Box>
         </Box>
       </Container>
