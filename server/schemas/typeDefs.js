@@ -6,6 +6,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    pets: [Pet]
   }  
   
   type Pet {
@@ -22,9 +23,11 @@ const typeDefs = gql`
   }
 
   type Query {
-    user: User
+    me: User
+    user(id: ID!): User
     users: [User]!
     getParks: User
+    getPets(id: ID!): [Pet]
   }
 
   type Mutation {

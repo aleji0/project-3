@@ -4,6 +4,7 @@ import Account from './components/Account';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Signup from './components/Signup';
 
 
 const authLink = setContext((_, { headers }) => {
@@ -37,6 +38,10 @@ function App() {
           <Route  
             path = '*'
             element = {<Login/>}
+          />
+          <Route  
+            path = 'Signup'
+            element = {<Signup/>}
           />
         </Routes>
       </Router>
