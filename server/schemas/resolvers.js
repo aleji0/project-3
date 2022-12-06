@@ -6,7 +6,7 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate("pets")
+        const user = await User.findById(context.user._id).populate('pets')
         return user;
       }
 
@@ -22,16 +22,7 @@ const resolvers = {
     },
     users: async (parent, args, context) => {
       if (context.user) {
-        const users = await User.find({}).populate('pets');
-
-        return users;
-      }
-
-      throw new AuthenticationError("Not logged in");
-    },
-    getParks: async (parent, args, context) => {
-      if (context.user) {
-        const users = await User.find({});
+        const users = await User.find({}).populate("pets");
 
         return users;
       }
@@ -39,9 +30,6 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    //Update queries on the front to update with data on the backend.
-    //With react we need to create dashboard page, afterwards we use graphql to make the call to pull in data from this get post
-    //and render it to page.
     getPets: async (parent, args, context) => {
       if (context.user) {
           return (await User.findById(args.id).populate("pets")).pets
