@@ -68,14 +68,13 @@ const Account = () => {
       petAge: "",
     });
   };
-  const bull = (
-    <Box
-      component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-    >
-      •
-    </Box>
-  );
+
+  <Box
+    component="span"
+    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+  >
+    •
+  </Box>;
 
   return (
     <ThemeProvider theme={theme}>
