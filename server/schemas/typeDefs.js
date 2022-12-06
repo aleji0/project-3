@@ -26,7 +26,6 @@ const typeDefs = gql`
     me: User
     user: User
     users: [User]!
-    getParks: User
     getPets(id: ID!): [Pet]
   }
 
