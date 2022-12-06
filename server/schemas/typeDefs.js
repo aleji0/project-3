@@ -23,8 +23,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    me: User
-    user(id: ID!): User
+    : User
     users: [User]!
     getParks: User
     getPets(id: ID!): [Pet]
