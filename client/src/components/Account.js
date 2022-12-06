@@ -35,12 +35,13 @@ const Account = () => {
     console.log(event.target.value);
     setSelected(event.target.value);
   };
-  // const handleWeight = (event) => {
-  //   const { weight, value } = event.target;
-  //   setFormState({
-  //     ...formState,
-  //     [weight]: value,
-  //   });
+  const handleInteger = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: parseInt(value),
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -61,6 +62,13 @@ const Account = () => {
       petAge: "",
     });
   };
+
+  <Box
+    component="span"
+    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+  >
+    •
+  </Box>;
 
   return (
     <ThemeProvider theme={theme}>
@@ -136,7 +144,7 @@ const Account = () => {
               placeholder="Your pet's weight in lbs?"
               type="number"
               value={formState.petWeight}
-              onChange={handleChange}
+              onChange={handleInteger}
             />
             <TextField
               margin="normal"
@@ -151,7 +159,7 @@ const Account = () => {
               placeholder="Your pet's age"
               type="number"
               value={formState.petAge}
-              onChange={handleChange}
+              onChange={handleInteger}
             />
             <Button
               type="submit"
@@ -163,6 +171,18 @@ const Account = () => {
             </Button>
           </Box>
         </Box>
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              Healthy Pets
+            </Typography>
+
+            <Typography variant="body2"></Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Learn More</Button>
+          </CardActions>
+        </Card>
       </Container>
     </ThemeProvider>
   );

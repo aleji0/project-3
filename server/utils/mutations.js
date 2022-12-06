@@ -12,11 +12,13 @@ export const ADD_PROFILE = gql`
   }
 `;
 export const ADD_PET = gql`
-  mutation addPet($petName: String!, $petType: String!) {
-    addPet(petName: $petName, petType: $petType) {
+  mutation addPet($petName: String!, $petType: String!, $petWeight: Int!, $petAge: Int!) {
+    addPet(petName: $petName, petType: $petType, petWeight: $petWeight , petAge: $petAge) {
       _id
       petName
       petType
+      petWeight
+      petAge
     }
   }
 `;

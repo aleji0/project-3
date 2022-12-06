@@ -28,6 +28,7 @@ const userSchema = new Schema({
 pets: [
   {
     type: Schema.Types.ObjectId,
+    
     ref: "Pet"
   }
 ]
