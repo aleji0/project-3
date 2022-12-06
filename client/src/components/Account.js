@@ -13,6 +13,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 
 // import Auth from '../utils/auth';
 const Account = () => {
@@ -66,6 +69,13 @@ const Account = () => {
       petAge: "",
     });
   };
+
+  <Box
+    component="span"
+    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+  >
+    •
+  </Box>;
 
   return (
     <ThemeProvider theme={theme}>
@@ -168,6 +178,18 @@ const Account = () => {
             </Button>
           </Box>
         </Box>
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              Healthy Pets
+            </Typography>
+
+            <Typography variant="body2"></Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Learn More</Button>
+          </CardActions>
+        </Card>
       </Container>
     </ThemeProvider>
   );
