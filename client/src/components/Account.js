@@ -36,7 +36,7 @@ const Account = () => {
       // [age]: age,
     });
   };
-
+  const [petList, setPetList] = useState([]);
   const [selected, setSelected] = useState("dog");
   const handleRadio = (event) => {
     console.log(event.target.value);
@@ -56,17 +56,18 @@ const Account = () => {
       const { data } = await addPet({
         variables: { ...formState },
       });
+      setPetList([...petList, formState]);
       console.log(data);
+      setFormState({
+        petName: "",
+        petType: "",
+        petWeight: "",
+        petAge: "",
+      });
     } catch (e) {
       console.error(e);
     }
     // clear form values
-    setFormState({
-      petName: "",
-      petType: "",
-      petWeight: "",
-      petAge: "",
-    });
   };
 
   <Box
@@ -182,6 +183,11 @@ const Account = () => {
             <Typography variant="h5" component="div">
               Healthy Pets
             </Typography>
+            <ul>
+              {petList.map((pet) => {
+                return <li>{pet.petName}</li>;
+              })}
+            </ul>
 
             <Typography variant="body2"></Typography>
           </CardContent>
