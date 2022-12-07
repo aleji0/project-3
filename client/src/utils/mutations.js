@@ -23,8 +23,10 @@ export const LOGIN_USER = gql`
   }
 `;
 export const ADD_PET = gql`
-  mutation Mutation($petName: String!, $petType: String!, $petWeight: Int!, $petAge: Int! ) {
-    addPet(petName: $petName, petType: $petType, petWeight: $petWeight , petAge: $petAge) {
+
+  mutation addPet($petName: String!, $petType: String!) {
+    addPet(petName: $petName, petType: $petType) {
+
       _id
       petName
       petType
