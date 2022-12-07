@@ -6,12 +6,15 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    pets: [Pet]
   }  
   
   type Pet {
     _id: ID
     petName: String
     petType: String
+    petWeight: Int
+    petAge: Int
   }
 
   type Auth {
@@ -20,9 +23,10 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     user: User
     users: [User]!
-    getParks: User
+    getPets(id: ID!): [Pet]
   }
 
   type Mutation {
@@ -31,10 +35,14 @@ const typeDefs = gql`
     addPet(
       petName: String!
       petType: String!
+      petWeight: Int!
+      petAge: Int!
     ) : Pet
     updatePet(
       petName: String
       petType: String
+      petWeight: Int
+      petAge: Int
     ) : Pet
     addUser(
       firstName: String!

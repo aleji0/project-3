@@ -4,10 +4,17 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate('pets')
+        return user;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id);
-
+        const user = await User.findById(args.id).populate("pets")
         return user;
       }
 
@@ -15,18 +22,17 @@ const resolvers = {
     },
     users: async (parent, args, context) => {
       if (context.user) {
-        const users = await User.find({});
+        const users = await User.find({}).populate("pets");
 
         return users;
       }
 
       throw new AuthenticationError("Not logged in");
     },
-    getParks: async (parent, args, context) => {
-      if (context.user) {
-        const users = await User.find({});
 
-        return users;
+    getPets: async (parent, args, context) => {
+      if (context.user) {
+          return (await User.findById(args.id).populate("pets")).pets
       }
 
       throw new AuthenticationError("Not logged in");
@@ -77,7 +83,7 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }).populate("pets");
 
       if (!user) {
         throw new AuthenticationError("No User with this email found!");
